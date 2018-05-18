@@ -65,7 +65,7 @@
         <!--Item 1-->
         <scene sceneID="CXF-km-7cm">
             <objects>
-                <viewController id="b1M-N6-YPL" sceneMemberID="viewController">
+                <viewController id="b1M-N6-YPL" customClass="WIsViewController" customModule="Wardrobez" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eK5-VC-GrP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,6 +109,9 @@
                                     <segment title="Last Used"/>
                                     <segment title="Popular"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeSortMethod:" destination="b1M-N6-YPL" eventType="valueChanged" id="eTG-RZ-Diz"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BM5-5F-yhT">
                                 <rect key="frame" x="43" y="33" width="73" height="21"/>
@@ -134,6 +137,9 @@
                         <viewLayoutGuide key="safeArea" id="qQe-J8-Qwx"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="F9o-oe-qfy"/>
+                    <connections>
+                        <outlet property="sortByControl" destination="FjL-hJ-2iU" id="mRt-U3-epW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yM-zB-Tbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

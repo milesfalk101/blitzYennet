@@ -14,6 +14,7 @@ final class WIPhotosViewController: UICollectionViewController {
     fileprivate let reuseIdentifier = "WIPhotoCell"
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0) //TODO Delete not using from tutorial
     fileprivate var searches = [WISearchResults]()
+    fileprivate var dataSource: WISearchResults!
     fileprivate var allWIs = [WardrobeItem]()
     fileprivate let itemsPerRow: CGFloat = 3
     //TODO create function equivalent to Flickr()
@@ -40,6 +41,7 @@ final class WIPhotosViewController: UICollectionViewController {
             
             newResults = WISearchResults(searchTerm:"last used", searchResults:wiPhotosSorted)
             searches.insert(newResults, at: 0)
+            dataSource = newResults
             self.collectionView?.reloadData()
             
         }
@@ -75,26 +77,27 @@ final class WIPhotosViewController: UICollectionViewController {
         
         var newResults = WISearchResults(searchTerm:"all", searchResults:[wiPhoto1,wiPhoto2,wiPhoto3])
         searches.insert(newResults, at: 0)
+        dataSource = newResults
         self.collectionView?.reloadData()
     }
 }
 // MARK: - Private
 private extension WIPhotosViewController {
     func photoForIndexPath(indexPath: IndexPath) -> WIPhoto {
-        return searches[(indexPath as NSIndexPath).section].searchResults[(indexPath as IndexPath).row]
+        return dataSource.searchResults[(indexPath as IndexPath).row]
     }
 }
 // MARK: - UICollectionViewDataSource
 extension WIPhotosViewController {
     //1
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return searches.count
+        return 1
     }
     
     //2
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return searches[section].searchResults.count
+        return dataSource.searchResults.count
     }
     
     //3
